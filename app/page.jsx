@@ -4,7 +4,7 @@ import { useEffect, useState, useMemo, useRef } from "react";
 import { useConversation } from "@/hooks/useConversation";
 import Image from "next/image";
 
-import ActiveCallDetail from "@/components/Call/ActiveCallDetail";
+import ActiveCallDetail from "@/components/call/ActiveCallDetail";
 import Button from "@/components/ui/Button";
 import Vapi from "@vapi-ai/web";
 import Transcript from "@/components/transcript/Transcript";
