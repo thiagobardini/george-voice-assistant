@@ -4,12 +4,12 @@ import { useEffect, useState, useMemo, useRef } from "react";
 import { useConversation } from "@/hooks/useConversation";
 import Image from "next/image";
 
-import ActiveCallDetail from "@/components/features/call/activeCallDetail";
-import Button from "@/components/ui/button";
+import ActiveCallDetail from "@/components/Call/ActiveCallDetail";
+import Button from "@/components/ui/Button";
 import Vapi from "@vapi-ai/web";
-import Transcript from "@/components/features/transcript/Transcript";
+import Transcript from "@/components/transcript/Transcript";
 
-import { getBobAssistant } from "@/utils/assistant";
+import { getBobAssistant } from "@/services/Assistant";
 import "@/styles/globals.css";
 
 const Home = () => {
@@ -73,7 +73,7 @@ const Home = () => {
           setTempUserText("");
         }
       };
-      recognition.onerror = (event: any) => {
+      recognition.onerror = (event) => {
         console.error("Speech recognition error:", event.error);
         if (tempUserText.trim()) {
           addUserMessage(tempUserText);
@@ -129,7 +129,7 @@ const Home = () => {
     
     vapiClient.on("message", (message) => {
       if (message.type === "conversation-update") {
-        message.messages.forEach((msg: any) => {
+        message.messages.forEach((msg) => {
           if (msg.role === "user") {
             addUserMessage(msg.message);
           } else if (msg.role === "assistant") {
