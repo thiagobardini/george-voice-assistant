@@ -14,8 +14,8 @@ export const getBobAssistant = async () => {
       language: "en-US",
     },
     voice: {
-      provider: "cartesia",
-      voiceId: "565510e8-6b45-45de-8758-13588fbaec73",
+      provider: "playht",
+      voiceId: process.env.NEXT_PUBLIC_VAPI_VOICE_ID,
     },
     analysisPlan: {
       structuredDataPlan: {
