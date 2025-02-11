@@ -27,26 +27,6 @@ export const metadata: Metadata = {
     "meeting scheduler",
     "smart calendar management",
   ],
-  openGraph: {
-    title: "Call George - Voice-Powered Scheduling Assistant",
-    description:
-      "Revolutionize your scheduling workflow with natural voice commands. Call George handles appointments, reminders and calendar management through conversational AI.",
-    images: [
-      {
-        url: "/george-icon-blue.png",
-        width: 1200,
-        height: 630,
-        alt: "Call George Voice Assistant Interface",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Call George - Smart Voice Scheduling",
-    description:
-      "Book meetings naturally with voice commands. AI-powered Calendly integration for modern professionals.",
-    images: ["/george-icon-blue.png"],
-  },
   icons: {
     icon: "/george-icon-blue.png",
   },

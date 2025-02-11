@@ -22,7 +22,7 @@ const Button = ({ label, onClick, isLoading, disabled }) => {
     <button
     onClick={onClick}
     style={{
-      backgroundColor: "#3498db",
+      backgroundColor: "#1255CC",
       color: "white",
       border: "2px solid #ddd",
       borderRadius: "8px",

@@ -4,18 +4,12 @@ const numBars = 10;
 
 const VolumeLevel = ({ volume }) => {
   return (
-    <div style={{ padding: "20px" }}>
-      <div style={{ display: "flex", marginBottom: "10px" }}>
+    <div className="">
+      <div className="flex">
         {Array.from({ length: numBars }, (_, i) => (
           <div
             key={i}
-            style={{
-              width: "20px",
-              height: "20px",
-              margin: "2px",
-              backgroundColor: i / numBars < volume ? "#3ef07c" : "white",
-              borderRadius: "2px",
-            }}
+            className={`w-5 h-5 m-[1px] rounded-[2px] ${i / numBars < volume ? "bg-[#3ef07c]" : "bg-white"}`}
           />
         ))}
       </div>

@@ -5,25 +5,11 @@ import VolumeLevel from "@/components/call/VolumeLevel";
 const ActiveCallDetail = ({ assistantIsSpeaking, volumeLevel, onEndCallClick }) => {
   return (
     <div>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          alignItems: "center",
-          justifyContent: "center",
-          padding: "15px",
-          background: "linear-gradient(135deg, #e0eafc, #cfdef3)", 
-          border: "1px solid #ddd",
-          borderRadius: "8px",
-          boxShadow: "0px 4px 8px rgba(0,0,0,0.1)",
-          width: "400px",
-          height: "100px",
-        }}
-      >
+      <div className="flex flex-row items-center justify-center bg-gradient-to-br from-[#e0eafc] to-[#cfdef3] border border-[#ddd] rounded-lg shadow-md max-w-[400px] w-full p-4">
         <AssistantSpeechIndicator isSpeaking={assistantIsSpeaking} />
         <VolumeLevel volume={volumeLevel} />
       </div>
-      <div style={{ marginTop: "20px", textAlign: "center" }}>
+      <div className="mt-5 text-center">
         <Button label="End Call" onClick={onEndCallClick} />
       </div>
     </div>
