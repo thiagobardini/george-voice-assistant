@@ -10,6 +10,8 @@ import Vapi from "@vapi-ai/web";
 import Transcript from "@/components/transcript/Transcript";
 
 import { getBobAssistant } from "@/services/Assistant";
+
+import { GlowingEffect } from "@/components/ui/glowing-effect";
 import "@/styles/globals.css";
 
 const Home = () => {
@@ -188,40 +190,54 @@ const Home = () => {
 
   return (
     <>
-      <div
-        suppressHydrationWarning
-        className={`app-wrapper ${
-          assistantIsSpeaking || volumeLevel > 0 ? "active" : ""
-        }`}
-      >
-        <div className="animated-bg">
-          <div className="blob blob-1"></div>
-          <div className="blob blob-2"></div>
-          <div className="blob blob-3"></div>
-        </div>
-        <div className="main-content">
-          <div className={`card-container ${connected ? "connected" : ""}`}>
-            <Image
-              src="/george.png"
-              alt="George"
-              width={100}
-              height={100}
-              className={`avatar ${assistantIsSpeaking ? "speaking" : ""}`}
-            />
-            {!connected ? (
-              <Button
-                label="Start Call"
-                onClick={startCallInline}
-                isLoading={connecting}
-                disabled={connecting}
-              />
-            ) : (
-              <ActiveCallDetail
-                assistantIsSpeaking={assistantIsSpeaking}
-                volumeLevel={volumeLevel}
-                onEndCallClick={endCall}
-              />
-            )}
+      <div className="relative">
+        <GlowingEffect
+          blur={0}
+          borderWidth={3}
+          spread={80}
+          glow={true}
+          disabled={false}
+          proximity={64}
+          inactiveZone={0.01}
+          className="rounded-xl"
+        />
+        <div className="relative z-10">
+          <div
+            suppressHydrationWarning
+            className={`app-wrapper ${
+              assistantIsSpeaking || volumeLevel > 0 ? "active" : ""
+            }`}
+          >
+            <div className="animated-bg">
+              <div className="blob blob-1"></div>
+              <div className="blob blob-2"></div>
+              <div className="blob blob-3"></div>
+            </div>
+            <div className="main-content">
+              <div className={`card-container ${connected ? "connected" : ""}`}>
+                <Image
+                  src="/george.png"
+                  alt="George"
+                  width={100}
+                  height={100}
+                  className={`avatar ${assistantIsSpeaking ? "speaking" : ""}`}
+                />
+                {!connected ? (
+                  <Button
+                    label="Start Call"
+                    onClick={startCallInline}
+                    isLoading={connecting}
+                    disabled={connecting}
+                  />
+                ) : (
+                  <ActiveCallDetail
+                    assistantIsSpeaking={assistantIsSpeaking}
+                    volumeLevel={volumeLevel}
+                    onEndCallClick={endCall}
+                  />
+                )}
+              </div>
+            </div>
           </div>
         </div>
 
