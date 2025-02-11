@@ -42,7 +42,7 @@ const Navbar = () => {
             {pathname !== "/about" && (
               <Link
                 href="/about"
-                className="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md"
+                className="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md z-20"
               >
                 About
               </Link>
