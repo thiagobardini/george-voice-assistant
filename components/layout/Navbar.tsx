@@ -18,7 +18,7 @@ const Navbar = () => {
           <div className="flex-shrink-0 flex items-center">
             <Link href="/" className="text-xl font-bold text-gray-800">
               <Image
-                src="/george-navbar-black.svg"
+                src="/george-navbar.svg"
                 alt="George Logo"
                 width={200}
                 height={100}

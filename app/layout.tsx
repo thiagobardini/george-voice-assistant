@@ -16,9 +16,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "George AI - Voice-Activated Scheduling Assistant",
+  title: "Call George - Voice-Activated Scheduling Assistant",
   description:
-    "Experience seamless voice-powered appointment scheduling with George AI. Our intelligent assistant integrates with Calendly to manage your bookings using natural conversation. Try the future of meeting scheduling today!",
+    "Experience seamless voice-powered appointment scheduling with Call George. Our intelligent assistant integrates with Calendly to manage your bookings using natural conversation. Try the future of meeting scheduling today!",
   keywords: [
     "AI scheduling assistant",
     "voice-activated booking",
@@ -28,21 +28,21 @@ export const metadata: Metadata = {
     "smart calendar management",
   ],
   openGraph: {
-    title: "George AI - Voice-Powered Scheduling Assistant",
+    title: "Call George - Voice-Powered Scheduling Assistant",
     description:
-      "Revolutionize your scheduling workflow with natural voice commands. George AI handles appointments, reminders and calendar management through conversational AI.",
+      "Revolutionize your scheduling workflow with natural voice commands. Call George handles appointments, reminders and calendar management through conversational AI.",
     images: [
       {
         url: "/george-icon-blue.png",
         width: 1200,
         height: 630,
-        alt: "George AI Voice Assistant Interface",
+        alt: "Call George Voice Assistant Interface",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "George AI - Smart Voice Scheduling",
+    title: "Call George - Smart Voice Scheduling",
     description:
       "Book meetings naturally with voice commands. AI-powered Calendly integration for modern professionals.",
     images: ["/george-icon-blue.png"],

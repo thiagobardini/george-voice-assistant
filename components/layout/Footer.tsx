@@ -14,9 +14,9 @@ const Footer = () => {
           <Image
             src="/sundai_logo_dark.svg"
             alt="Developed by Sundai"
-            className="h-8"
-            width={120}
-            height={30}
+            // className="h-8"
+            width={150}
+            height={100}
           />
         </a>
       </div>
