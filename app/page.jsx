@@ -206,7 +206,6 @@ const Home = () => {
           disabled={false}
           proximity={64}
           inactiveZone={0.01}
-          className="rounded-xl"
         />
         <div className="relative z-10">
           <div
