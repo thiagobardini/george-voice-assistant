@@ -2,8 +2,8 @@
 import { ContributorCard } from "@/components/about/ContributorCardProps";
 import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-with-collision";
 import { GlowingEffect } from "@/components/ui/glowing-effect";
-
 import Image from "next/image";
+
 export default function AboutPage() {
   return (
     <BackgroundBeamsWithCollision className="pt-4 relative">
@@ -39,9 +39,17 @@ export default function AboutPage() {
                 </p>
 
                 <div className="mb-4">
-                  <h2 className="text-2xl font-semibold mb-2">
-                    👤 What is Call George?
-                  </h2>
+                  <div className="flex items-center">
+                    <Image
+                      src="/george-icon.png"
+                      alt="George"
+                      width={38}
+                      height={38}
+                    />
+                    <h2 className="text-2xl font-semibold ml-2">
+                      What is Call George?
+                    </h2>
+                  </div>
                   <p>
                     Call George is your dedicated voice AI agent designed for
                     service-based businesses like inspections, plumbing, and
