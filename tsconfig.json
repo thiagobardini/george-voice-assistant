@@ -23,6 +23,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "hooks/useConversation.jsx", "app/layout.jsx", "app/page.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "hooks/useConversation.jsx", "app/layout.jsx", "app/page.jsx", "components/about/ContributorCardProps.jsx"],
   "exclude": ["node_modules"]
 }
