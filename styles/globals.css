@@ -185,12 +185,11 @@ body {
 .main-content {
   position: relative;
   z-index: 5;
-  min-height: 100vh;
+  /* min-height: 100vh; */
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 20px;
-  padding-bottom: calc(30vh + 40px);
 }
 
 .card-container {
@@ -216,7 +215,7 @@ body {
 }
 
 .avatar {
-  width: 200px;
+  width: 150px;
   height: auto;
   margin-bottom: 20px;
   transition: all 0.3s ease;

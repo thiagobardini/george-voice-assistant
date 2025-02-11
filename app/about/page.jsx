@@ -5,6 +5,60 @@ import { GlowingEffect } from "@/components/ui/glowing-effect";
 import Image from "next/image";
 
 export default function AboutPage() {
+  const contributors = [
+    {
+      name: "Thiago Bardini",
+      role: "Developer",
+      links: {
+        github: "https://github.com/thiagobardini",
+        linkedin: "https://www.linkedin.com/in/thiagobardini/",
+        portfolio: "https://www.tbardini.com/",
+      },
+    },
+    {
+      name: "George",
+      role: "Developer",
+      links: {
+        portfolio: "https://www.sundai.club/",
+      },
+    },
+    {
+      name: "Connor",
+      role: "Developer",
+      links: {
+        portfolio: "https://www.sundai.club/",
+      },
+    },
+    {
+      name: "Alejandro",
+      role: "Developer",
+      links: {
+        portfolio: "https://www.sundai.club/",
+      },
+    },
+    {
+      name: "Brenda",
+      role: "Developer",
+      links: {
+        portfolio: "https://www.sundai.club/",
+      },
+    },
+    {
+      name: "Enyu",
+      role: "Developer",
+      links: {
+        portfolio: "https://www.sundai.club/",
+      },
+    },
+    {
+      name: "Harsh",
+      role: "Developer",
+      links: {
+        portfolio: "https://www.sundai.club/",
+      },
+    },
+  ];
+
   return (
     <BackgroundBeamsWithCollision className="pt-4 relative">
       <div className="max-w-6xl mx-auto p-6">
@@ -13,7 +67,7 @@ export default function AboutPage() {
         <section className="mb-16">
           <div className="flex items-center justify-center mb-4">
             <Image
-              src="/george-banner-about.svg"
+              src="call-george-banner.svg"
               alt="George"
               width={500}
               height={100}
@@ -219,97 +273,54 @@ export default function AboutPage() {
         {/* Section Builders Crew */}
         <section className="mb-16">
           <h2 className="text-3xl font-bold mb-8">Builders Crew</h2>
+          <div className="rounded-lg  mb-8">
+            <div className="flex items-center justify-center">
+              <div className="relative">
+                <GlowingEffect
+                  blur={0}
+                  borderWidth={3}
+                  spread={80}
+                  glow={true}
+                  disabled={false}
+                  proximity={64}
+                  inactiveZone={0.01}
+                  className="rounded-xl"
+                />
+                <div className="relative z-10">
+                  <Image
+                    src="/builders-crew.jpg"
+                    alt="Builders Crew"
+                    width={500}
+                    height={250}
+                    className="rounded-lg"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div className="relative">
-              <GlowingEffect
-                blur={0}
-                borderWidth={3}
-                spread={80}
-                glow={true}
-                disabled={false}
-                proximity={64}
-                inactiveZone={0.01}
-                className="rounded-xl"
-              />
-              <div className="relative z-10">
-                <ContributorCard
-                  name="Thiago Bardini"
-                  role="Developer"
-                  links={{
-                    github: "https://github.com/thiagobardini",
-                    linkedin: "https://www.linkedin.com/in/thiagobardini/",
-                    portfolio: "https://www.tbardini.com/",
-                  }}
+            {contributors.map((contributor, index) => (
+              <div className="relative" key={index}>
+                <GlowingEffect
+                  blur={0}
+                  borderWidth={3}
+                  spread={80}
+                  glow={true}
+                  disabled={false}
+                  proximity={64}
+                  inactiveZone={0.01}
+                  className="rounded-xl"
                 />
+                <div className="relative z-10">
+                  <ContributorCard
+                    name={contributor.name}
+                    role={contributor.role}
+                    links={contributor.links}
+                  />
+                </div>
               </div>
-            </div>
-
-            <div className="relative">
-              <GlowingEffect
-                blur={0}
-                borderWidth={3}
-                spread={80}
-                glow={true}
-                disabled={false}
-                proximity={64}
-                inactiveZone={0.01}
-                className="rounded-xl"
-              />
-              <div className="relative z-10">
-                <ContributorCard
-                  name="George"
-                  role="Developer"
-                  links={{
-                    portfolio: "https://www.sundai.club/",
-                  }}
-                />
-              </div>
-            </div>
-
-            <div className="relative">
-              <GlowingEffect
-                blur={0}
-                borderWidth={3}
-                spread={80}
-                glow={true}
-                disabled={false}
-                proximity={64}
-                inactiveZone={0.01}
-                className="rounded-xl"
-              />
-              <div className="relative z-10">
-                <ContributorCard
-                  name="Connor"
-                  role="Developer"
-                  links={{
-                    portfolio: "https://www.sundai.club/",
-                  }}
-                />
-              </div>
-            </div>
-
-            <div className="relative">
-              <GlowingEffect
-                blur={0}
-                borderWidth={3}
-                spread={80}
-                glow={true}
-                disabled={false}
-                proximity={64}
-                inactiveZone={0.01}
-                className="rounded-xl"
-              />
-              <div className="relative z-10">
-                <ContributorCard
-                  name="You?"
-                  role="Next Contributor"
-                  links={{
-                    join: "https://sundai.club/join",
-                  }}
-                />
-              </div>
-            </div>
+            ))}
           </div>
         </section>
 
@@ -427,7 +438,7 @@ export default function AboutPage() {
             className="rounded-xl"
           />
           <div className="relative z-10">
-            <section className="text-center py-12 bg-gray-50 rounded-xl">
+            <section className="text-center py-12 bg-gray-50 rounded-xl px-4">
               <h3 className="text-2xl font-bold mb-4">Ready to Build?</h3>
               <p className="mb-8 max-w-2xl mx-auto">
                 Whether you're a seasoned developer or just starting out, Sundai

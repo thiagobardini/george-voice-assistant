@@ -1,11 +1,5 @@
 import Link from "next/link";
-import {
-  FaGithub,
-  FaLinkedin,
-  FaTwitter,
-  FaGlobe,
-  FaInstagram,
-} from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaTwitter, FaGlobe, FaInstagram } from "react-icons/fa";
 
 export function ContributorCard({ name, role, links }) {
   const iconClass = "w-5 h-5 hover:scale-110 transition-transform";

@@ -15,16 +15,16 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-white shadow-lg">
+    <nav className=" shadow-lg px-2">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex-shrink-0 flex items-center">
             <Link href="/" className="text-xl font-bold text-gray-800">
               <Image
-                src="/george-navbar.svg"
+                src="/call-gerge-text-blue.png"
                 alt="George Logo"
-                width={200}
-                height={100}
+                width={130}
+                height={120}
               />
             </Link>
           </div>

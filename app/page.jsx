@@ -11,6 +11,7 @@ import Transcript from "@/components/transcript/Transcript";
 
 import { getBobAssistant } from "@/services/Assistant";
 
+import { EvervaultCard, Icon } from "@/components/ui/evervault-card";
 import { GlowingEffect } from "@/components/ui/glowing-effect";
 import "@/styles/globals.css";
 
@@ -209,43 +210,61 @@ const Home = () => {
         />
         <div className="relative z-10">
           <div
-            suppressHydrationWarning
+            // suppressHydrationWarning
             className={` ${
               assistantIsSpeaking || volumeLevel > 0 ? "active" : ""
             }`}
           >
-            <div className="main-content">
-              <div className={`card-container ${connected ? "connected" : ""}`}>
-                <div className="flex items-center justify-center">
+            <div className="flex items-start md:items-center justify-center h-[calc(100vh-170px)]">
+              <div className="flex flex-col md:flex-row items-center justify-center">
+                <div className="flex items-center justify-center md:mr-6 mb-4 md:mb-0 px-8 pt-4">
                   <Image
-                    src="/george-banner-about.svg"
+                    src="call-george-banner.svg"
                     alt="George"
                     width={500}
                     height={100}
                   />
                 </div>
-                <Image
-                  src="/george.png"
-                  alt="George"
-                  width={100}
-                  height={100}
-                  className={`avatar ${assistantIsSpeaking ? "speaking" : ""}`}
-                />
 
-                {!connected ? (
-                  <Button
-                    label="Start Call"
-                    onClick={startCallInline}
-                    isLoading={connecting}
-                    disabled={connecting}
+                <div className="flex flex-col items-center max-w-sm p-8 relative h-vh-80 w-screen">
+                  <Icon className="absolute h-6 w-6 -top-3 -left-3 dark:text-white text-black" />
+                  <Icon className="absolute h-6 w-6 -bottom-3 -left-3 dark:text-white text-black" />
+                  <Icon className="absolute h-6 w-6 -top-3 -right-3 dark:text-white text-black" />
+                  <Icon className="absolute h-6 w-6 -bottom-3 -right-3 dark:text-white text-black" />
+
+                  <EvervaultCard
+                    text=""
+                    alwaysActive={connected}
+                    className="absolute flex items-center justify-center w-full h-full z-0"
                   />
-                ) : (
-                  <ActiveCallDetail
-                    assistantIsSpeaking={assistantIsSpeaking}
-                    volumeLevel={volumeLevel}
-                    onEndCallClick={endCall}
-                  />
-                )}
+                  <div className="flex flex-col items-center justify-center w-full">
+                    <Image
+                      src="/george.png"
+                      alt="George"
+                      width={100}
+                      height={100}
+                      className={`avatar ${
+                        assistantIsSpeaking ? "speaking" : ""
+                      }`}
+                    />
+                  </div>
+                  <div className="flex flex-col items-center justify-center w-full z-20 relative">
+                    {!connected ? (
+                      <Button
+                        label="Start Call"
+                        onClick={startCallInline}
+                        isLoading={connecting}
+                        disabled={connecting}
+                      />
+                    ) : (
+                      <ActiveCallDetail
+                        assistantIsSpeaking={assistantIsSpeaking}
+                        volumeLevel={volumeLevel}
+                        onEndCallClick={endCall}
+                      />
+                    )}
+                  </div>
+                </div>
               </div>
             </div>
           </div>
