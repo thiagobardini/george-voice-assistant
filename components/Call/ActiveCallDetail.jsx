@@ -12,6 +12,7 @@ const ActiveCallDetail = ({ assistantIsSpeaking, volumeLevel, onEndCallClick }) 
           alignItems: "center",
           justifyContent: "center",
           padding: "15px",
+          background: "linear-gradient(135deg, #e0eafc, #cfdef3)", 
           border: "1px solid #ddd",
           borderRadius: "8px",
           boxShadow: "0px 4px 8px rgba(0,0,0,0.1)",

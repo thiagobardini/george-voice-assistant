@@ -42,10 +42,11 @@ const Home = () => {
         : null,
     []
   );
-  
+
   const startSpeechRecognition = () => {
     if (typeof window !== "undefined" && "webkitSpeechRecognition" in window) {
-      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      const SpeechRecognition =
+        window.SpeechRecognition || window.webkitSpeechRecognition;
       const recognition = new SpeechRecognition();
       recognition.continuous = true;
       recognition.interimResults = true;
@@ -106,7 +107,7 @@ const Home = () => {
       setCurrentText("");
       recognition = startSpeechRecognition();
     });
-    
+
     vapiClient.on("call-end", () => {
       setConnecting(false);
       setConnected(false);
@@ -115,20 +116,20 @@ const Home = () => {
         recognition.stop();
       }
     });
-    
+
     vapiClient.on("speech-start", () => {
       setAssistantIsSpeaking(true);
     });
-    
+
     vapiClient.on("speech-end", () => {
       setAssistantIsSpeaking(false);
       setCurrentText("");
     });
-    
+
     vapiClient.on("volume-level", (volume) => {
       setVolumeLevel(volume);
     });
-    
+
     vapiClient.on("message", (message) => {
       if (message.type === "conversation-update") {
         message.messages.forEach((msg) => {
@@ -140,18 +141,24 @@ const Home = () => {
         });
       }
     });
-    
+
     vapiClient.on("error", (error) => {
       console.error(error);
     });
-    
+
     return () => {
       if (recognition) {
         recognition.stop();
       }
       vapiClient.removeAllListeners();
     };
-  }, [vapiClient, clearConversation, setCurrentText, addUserMessage, addAssistantMessage]);
+  }, [
+    vapiClient,
+    clearConversation,
+    setCurrentText,
+    addUserMessage,
+    addAssistantMessage,
+  ]);
 
   // Add debug logging for transcript updates
   useEffect(() => {
@@ -204,17 +211,20 @@ const Home = () => {
         <div className="relative z-10">
           <div
             suppressHydrationWarning
-            className={`app-wrapper ${
+            className={` ${
               assistantIsSpeaking || volumeLevel > 0 ? "active" : ""
             }`}
           >
-            <div className="animated-bg">
-              <div className="blob blob-1"></div>
-              <div className="blob blob-2"></div>
-              <div className="blob blob-3"></div>
-            </div>
             <div className="main-content">
               <div className={`card-container ${connected ? "connected" : ""}`}>
+                <div className="flex items-center justify-center">
+                  <Image
+                    src="/george-banner-about.svg"
+                    alt="George"
+                    width={500}
+                    height={100}
+                  />
+                </div>
                 <Image
                   src="/george.png"
                   alt="George"
@@ -222,6 +232,7 @@ const Home = () => {
                   height={100}
                   className={`avatar ${assistantIsSpeaking ? "speaking" : ""}`}
                 />
+
                 {!connected ? (
                   <Button
                     label="Start Call"

@@ -6,7 +6,7 @@ import { GlowingEffect } from "@/components/ui/glowing-effect";
 import Image from "next/image";
 export default function AboutPage() {
   return (
-    <BackgroundBeamsWithCollision className="pt-16 relative">
+    <BackgroundBeamsWithCollision className="pt-4 relative">
       <div className="max-w-6xl mx-auto p-6">
         {/* Call George Section */}
 
