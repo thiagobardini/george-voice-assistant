@@ -1,20 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 
 const Transcript = ({
   transcript,
   conversation,
-  isTranscriptVisible,
+  // removed isTranscriptVisible,
   tempUserText,
   currentText,
   assistantIsSpeaking,
   transcriptRef,
-  toggleTranscript,
+  // removed toggleTranscript,
 }) => {
+  // Initialize transcript visibility to false
+  const [visible, setVisible] = useState(false);
+  const toggleTranscript = () => setVisible(!visible);
+
   return (
     <div
-      className={`live-transcript ${
-        isTranscriptVisible ? "visible" : "hidden"
-      }`}
+      className={`live-transcript ${visible ? "visible" : "hidden"}`}
     >
       <div className="transcript-header">
         <span>
@@ -46,13 +48,13 @@ const Transcript = ({
             onClick={toggleTranscript}
           >
             <span className="button-icon">
-              {isTranscriptVisible ? "▼" : "▲"}
+              {visible ? "▼" : "▲"}
             </span>
-            {isTranscriptVisible ? "Hide" : "Show"}
+            {visible ? "Hide" : "Show"}
           </button>
         </div>
       </div>
-      {isTranscriptVisible && (
+      {visible && (
         <div className="transcript-content" ref={transcriptRef}>
           <div className="messages-container">
             {transcript.length === 0 ? (
