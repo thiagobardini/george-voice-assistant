@@ -16,6 +16,7 @@
     "@vapi-ai/web": "^2.2.2",
     "@vercel/analytics": "^1.5.0",
     "clsx": "^2.1.1",
+    "googleapis": "^144.0.0",
     "motion": "^12.4.2",
     "next": "15.1.6",
     "react": "19.0.0",

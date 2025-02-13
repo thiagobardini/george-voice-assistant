@@ -60,7 +60,8 @@ export default function AboutPage() {
   ];
 
   return (
-    <BackgroundBeamsWithCollision className="pt-4 relative">
+    <>
+    {/* <BackgroundBeamsWithCollision className="pt-4 relative"> */}
       <div className="max-w-6xl mx-auto p-6">
         {/* Call George Section */}
 
@@ -462,6 +463,7 @@ export default function AboutPage() {
           </div>
         </div>
       </div>
-    </BackgroundBeamsWithCollision>
+    {/* </BackgroundBeamsWithCollision> */}
+    </>
   );
 }

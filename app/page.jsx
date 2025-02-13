@@ -10,6 +10,7 @@ import Vapi from "@vapi-ai/web";
 import Transcript from "@/components/transcript/Transcript";
 
 import { getBobAssistant } from "@/services/Assistant";
+import {getGeorgeAssistant} from "@/services/getGeorgeAssistant";
 
 import { EvervaultCard, Icon } from "@/components/ui/evervault-card";
 import { GlowingEffect } from "@/components/ui/glowing-effect";
@@ -167,11 +168,17 @@ const Home = () => {
   }, [transcript]);
 
   // call start handler
-  const startCallInline = () => {
+  const startCallInline = async () => {
     setConnecting(true);
-    getBobAssistant().then((assistant) => {
-      vapiClient.start(assistant);
-    });
+    try {
+      const assistant = await getGeorgeAssistant();
+      console.log("Assistant configuration:", assistant); // Log for debugging
+      await vapiClient.start(assistant);
+    } catch (error) {
+      console.error("Error starting call:", error); // Log for debugging
+    } finally {
+      setConnecting(false);
+    }
   };
 
   // Updated call control for ending the call:
