@@ -14,22 +14,56 @@ datasource db {
 }
 
 model User {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
-  name  String?
+  id              String    @id @default(uuid())
+  // Personal Information
+  fullName        String    @map("full_name")
+  email           String    @unique
+  phoneNumber     String    @unique
+  
+  // Property Information
+  propertyAddress String?   @map("property_address")
+  propertyType    String?   @map("property_type")
+  squareFootage   Int?      @map("square_footage")
+  
+  // Relations
+  sessions        Session[]
+
+  @@map("users")
 }
 
-model Inspection {
-  id              Int      @id @default(autoincrement())
-  propertyAddress String   @map("property_address")
-  propertyType    String   @map("property_type")
-  squareFootage   Int      @map("square_footage")
-  scheduledDate   DateTime @map("scheduled_date")
-  customerName    String   @map("customer_name")
-  customerEmail   String   @map("customer_email")
-  createdAt      DateTime @default(now()) @map("created_at")
-  calEventId     String?  @map("cal_event_id")
-  status         String   @default("scheduled")
+model Contractor {
+  id          String    @id @default(uuid())
+  phoneNumber String    @unique
+  name        String
+  email       String    @unique
+  experience  Int       // Years of experience
+  location    String    // Service area/location
+  specialty   String[]  // Array of specialties
+  sessions    Session[] // Relation to sessions
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
 
-  @@map("inspections")
+  @@map("contractors")
+}
+
+model Session {
+  id              String    @id @default(uuid())
+  propertyAddress String    @map("property_address")
+  propertyType    String    @map("property_type")
+  squareFootage   Int       @map("square_footage")
+  appointmentTime DateTime  @map("appointment_time")
+  
+  // Customer information
+  userId          String    @map("user_id")
+  user            User      @relation(fields: [userId], references: [id])
+  
+  // Contractor information
+  contractorId    String    @map("contractor_id")
+  contractor      Contractor @relation(fields: [contractorId], references: [id])
+  
+  createdAt       DateTime  @default(now()) @map("created_at")
+  calEventId      String?   @map("cal_event_id")
+  status          String    @default("scheduled")
+
+  @@map("sessions")
 }

@@ -18,25 +18,40 @@ export const getGeorgeAssistant = async () => {
         schema: {
           type: "object",
           properties: {
-            name: { type: "string", description: "Customer's full name" },
+            name: { 
+              type: "string", 
+              description: "Customer's full name" 
+            },
             address: {
               type: "string",
-              description:
-                "Complete home address (with street name, city, state, and zip code)",
+              description: "Complete home address (with street name, city, state, and zip code)"
             },
             location: {
               type: "string",
-              description: "Property location (city or region)",
+              description: "Property location (city or region)"
             },
             appointmentDate: {
               type: "string",
               description: "Preferred appointment date and time",
+              format: "date-time"
             },
-            email: { type: "string", description: "Customer's email address" },
+            email: { 
+              type: "string", 
+              description: "Customer's email address" 
+            },
             phoneNumber: {
               type: "string",
-              description: "Customer's phone number",
+              description: "Customer's phone number"
             },
+            propertyType: {
+              type: "string",
+              description: "Type of property (residential or commercial)",
+              enum: ["residential", "commercial"]
+            },
+            squareFootage: {
+              type: "integer",
+              description: "Approximate square footage of the property"
+            }
           },
           required: [
             "name",
@@ -45,8 +60,10 @@ export const getGeorgeAssistant = async () => {
             "appointmentDate",
             "email",
             "phoneNumber",
+            "propertyType",
+            "squareFootage"
           ],
-          description: "Booking information for home inspection",
+          description: "Booking information for home inspection"
         },
         timeoutSeconds: 1,
       },
@@ -65,7 +82,9 @@ export const getGeorgeAssistant = async () => {
           !data.location ||
           !data.appointmentDate ||
           !data.email ||
-          !data.phoneNumber
+          !data.phoneNumber ||
+          !data.propertyType ||
+          !data.squareFootage
         ) {
           throw new Error("Incomplete data received from the conversation");
         }
@@ -78,9 +97,13 @@ export const getGeorgeAssistant = async () => {
           throw new Error(`Invalid phone number format: ${data.phoneNumber}`);
         }
         if (!isValidDate(data.appointmentDate)) {
-          throw new Error(
-            `Invalid appointment date format: ${data.appointmentDate}`
-          );
+          throw new Error(`Invalid appointment date format: ${data.appointmentDate}`);
+        }
+        if (!isValidPropertyType(data.propertyType)) {
+          throw new Error(`Invalid property type: ${data.propertyType}`);
+        }
+        if (!isValidSquareFootage(data.squareFootage)) {
+          throw new Error(`Invalid square footage: ${data.squareFootage}`);
         }
 
         console.log("Raw conversation data:", conversation);
@@ -125,12 +148,14 @@ export const getGeorgeAssistant = async () => {
           content: `You are George, a friendly and professional call operator for a home repair company specializing in home inspections.
     
     Your primary goal is to help callers schedule home inspections while maintaining a natural, conversational tone. You must collect ALL of the following information:
-    - Customer's full name
-    - Complete home address (with street name, city, state, and zip code)
-    - Property location (city or region)
+    - Complete home address (with street name and zip code)
+    - Property type (residential or commercial)
+    - Approximate square footage of the property
     - Preferred appointment date and time
+    - Customer's full name
     - Customer's email address (ask for spelling)
     - Customer's phone number
+
     
     Key responsibilities:
     1. Verify spellings for addresses, email addresses, and phone numbers.
@@ -147,12 +172,14 @@ export const getGeorgeAssistant = async () => {
     "I understand, but let's make sure we get your inspection scheduled first."
     
     Before ending the call, verify you have collected ALL required information:
-    1. Customer Name: [full name]
-    2. Address: [complete address]
-    3. Location: [city or region]
+    1. Property Address: [repeat full address]
+    2. Property Type: [residential/commercial]
+    3. Square Footage: [number]
     4. Appointment Date & Time: [date and time]
-    5. Email: [spell out email]
-    6. Phone Number: [phone number]
+    5. Customer Name: [full name]
+    6. Email Address: [spell out email]
+    7. Phone Number: [phone number]
+
     
     End calls by summarizing ALL booking details:
     "Perfect! Let me confirm everything: We'll be inspecting your property located at [address] in [location]. The inspection is scheduled for [date & time]. I'll send the confirmation email to [email], and use [phone number] for any additional contact. Is all of that information correct?"
@@ -179,4 +206,12 @@ function isValidPhoneNumber(phoneNumber) {
 function isValidDate(dateString) {
   const date = new Date(dateString);
   return !isNaN(date.getTime());
+}
+
+function isValidPropertyType(propertyType) {
+  return ["residential", "commercial"].includes(propertyType.toLowerCase());
+}
+
+function isValidSquareFootage(squareFootage) {
+  return Number.isInteger(squareFootage) && squareFootage > 0;
 }

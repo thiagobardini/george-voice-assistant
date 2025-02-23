@@ -25,29 +25,44 @@ export const getBobAssistant = async () => {
                     properties: {
                         address: {
                             type: "string",
-                            description: "Complete address of the home to be inspected",
+                            description: "Complete address of the home to be inspected"
                         },
                         propertyType: {
                             type: "string",
-                            description: "Type of property (e.g., residential, commercial)",
+                            description: "Type of property (residential or commercial)",
+                            enum: ["residential", "commercial"]
                         },
                         squareFootage: {
-                            type: "number",
-                            description: "Square footage of the property",
+                            type: "integer",
+                            description: "Square footage of the property"
                         },
                         appointmentDate: {
                             type: "string",
                             description: "Requested date for inspection",
+                            format: "date-time"
                         },
-                        customerName: {
+                        fullName: {
                             type: "string",
-                            description: "Customer's full name",
+                            description: "Customer's full name"
                         },
-                        customerEmail: {
+                        email: {
                             type: "string",
-                            description: "Customer's email address",
+                            description: "Customer's email address"
                         },
+                        phoneNumber: {
+                            type: "string",
+                            description: "Customer's phone number"
+                        }
                     },
+                    required: [
+                        "address",
+                        "propertyType",
+                        "squareFootage",
+                        "appointmentDate",
+                        "fullName",
+                        "email",
+                        "phoneNumber"
+                    ],
                     description: "Booking information for home inspection",
                 },
                 timeoutSeconds: 1,
@@ -61,6 +76,13 @@ export const getBobAssistant = async () => {
                 const data = conversation.structuredData;
                 console.log("Raw conversation data:", conversation);
                 console.log("Structured data:", data);
+
+                // Basic validation
+                if (!data.address || !data.propertyType || 
+                    !data.squareFootage || !data.appointmentDate || 
+                    !data.fullName || !data.email || !data.phoneNumber) {
+                    throw new Error("Incomplete data received from the conversation");
+                }
 
                 // Format data using Groq
                 console.log("Sending to Groq API:", {
@@ -101,8 +123,8 @@ export const getBobAssistant = async () => {
 
                 const bookingPayload = {
                     startTime: formattedData.startTime || data.appointmentDate,
-                    name: formattedData.name || data.customerName,
-                    email: formattedData.email || data.customerEmail,
+                    name: formattedData.name || data.fullName,
+                    email: formattedData.email || data.email,
                     notes: `Property Type: ${data.propertyType}, Square Footage: ${data.squareFootage}`,
                     address: formattedData.address || data.address,
                 };
@@ -142,12 +164,13 @@ export const getBobAssistant = async () => {
                     content: `You are Georgia, a friendly and professional call operator for a home repair company specializing in home inspections.
 
 Your primary goal is to help callers schedule home inspections while maintaining a natural, conversational tone. You must collect ALL of the following information:
-- Complete home address (with street name and zip code)
-- Property type (residential or commercial)
-- Approximate square footage of the property
-- Preferred appointment date and time
+- Complete property address (with street name, city, state, and zip code)
+- Property type (must be either residential or commercial)
+- Approximate square footage of the property (must be a whole number)
+- Preferred appointment date and time (in ISO format)
 - Customer's full name
 - Customer's email address (ask for spelling)
+- Customer's phone number (must be 10-15 digits)
 
 Key responsibilities:
 1. Verify spellings for addresses and email addresses
@@ -177,6 +200,7 @@ Before ending the call, verify you have collected ALL required information:
 4. Appointment Date & Time: [date and time]
 5. Customer Name: [full name]
 6. Email Address: [spell out email]
+7. Phone Number: [verify format]
 
 End calls by summarizing ALL booking details:
 "Perfect! Let me confirm everything: We'll be inspecting your [square footage] square foot [property type] property at [address]. The inspection is scheduled for [date & time]. I'll send the confirmation email to [spell out email]. Is all of that information correct?"
