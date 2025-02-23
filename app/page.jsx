@@ -4,7 +4,7 @@ import { useEffect, useState, useMemo, useRef } from "react";
 import { useConversation } from "@/hooks/useConversation";
 import Image from "next/image";
 
-import ActiveCallDetail from "@/components/call/ActiveCallDetail";
+import ActiveCallDetail from "@/components/Call/ActiveCallDetail";
 import Button from "@/components/ui/Button";
 import Vapi from "@vapi-ai/web";
 import Transcript from "@/components/transcript/Transcript";
@@ -12,8 +12,8 @@ import Transcript from "@/components/transcript/Transcript";
 import { getBobAssistant } from "@/services/Assistant";
 import { getGeorgeAssistant } from "@/services/getGeorgeAssistant";
 
-import { EvervaultCard, Icon } from "@/components/ui/evervault-card";
-import { GlowingEffect } from "@/components/ui/glowing-effect";
+import { EvervaultCard, Icon } from "@/components/ui/EvervaultCard";
+import { GlowingEffect } from "@/components/ui/GlowingEffect";
 import "@/styles/globals.css";
 
 const Home = () => {

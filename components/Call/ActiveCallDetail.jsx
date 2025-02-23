@@ -1,6 +1,6 @@
-import AssistantSpeechIndicator from "@/components/call/AssistantSpeechIndicator";
+import AssistantSpeechIndicator from "@/components/Call/AssistantSpeechIndicator";
 import Button from "@/components/ui/Button";
-import VolumeLevel from "@/components/call/VolumeLevel";
+import VolumeLevel from "@/components/Call/VolumeLevel";
 
 const ActiveCallDetail = ({ assistantIsSpeaking, volumeLevel, onEndCallClick }) => {
   return (
