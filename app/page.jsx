@@ -10,7 +10,7 @@ import Vapi from "@vapi-ai/web";
 import Transcript from "@/components/transcript/Transcript";
 
 import { getBobAssistant } from "@/services/Assistant";
-import {getGeorgeAssistant} from "@/services/getGeorgeAssistant";
+import { getGeorgeAssistant } from "@/services/getGeorgeAssistant";
 
 import { EvervaultCard, Icon } from "@/components/ui/evervault-card";
 import { GlowingEffect } from "@/components/ui/glowing-effect";
