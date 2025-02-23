@@ -5,7 +5,7 @@
 
 export const getBobAssistant = async () => {
     return {
-        name: "Georgia",
+        name: "George",
         firstMessage:
             "Hi, thanks for calling! My name is George. Are you looking to schedule a home inspection today?",
         transcriber: {
