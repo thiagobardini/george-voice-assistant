@@ -6,38 +6,71 @@ export async function POST(request) {
   try {
     const requestData = await request.json();
 
-    // Extrair os dados relevantes do webhook
-    const { name, address, location, appointmentDate, email, phoneNumber } = requestData;
+    // Extract data using new schema
+    const { 
+      address,
+      propertyType,
+      squareFootage,
+      appointmentDate,
+      fullName,
+      email,
+      phoneNumber 
+    } = requestData;
 
-    // Validar os dados recebidos
-    if (!name || !address || !location || !appointmentDate || !email || !phoneNumber) {
-      return new Response(JSON.stringify({ error: "Missing required fields" }), { status: 400 });
+    // Validate required fields
+    if (!address || !propertyType || !squareFootage || 
+        !appointmentDate || !fullName || !email || !phoneNumber) {
+      return new Response(
+        JSON.stringify({ 
+          error: "Missing required fields",
+          details: "All fields are required: address, propertyType, squareFootage, appointmentDate, fullName, email, phoneNumber"
+        }), 
+        { status: 400 }
+      );
     }
 
-    // Salvar os dados no arquivo JSON
-    saveAppointment({ name, address, location, appointmentDate, email, phoneNumber });
+    // Save appointment with new schema
+    saveAppointment({ 
+      address,
+      propertyType,
+      squareFootage,
+      appointmentDate,
+      fullName,
+      email,
+      phoneNumber 
+    });
 
-    // Tentar criar o evento no Google Calendar
+    // Create calendar event with new schema
     try {
       const calendarResponse = await addEventToCalendar({
-        name,
         address,
-        location,
+        propertyType,
+        squareFootage,
         appointmentDate,
+        fullName,
         email,
-        phoneNumber,
+        phoneNumber
       });
 
       return new Response(
-        JSON.stringify({ message: "Event created successfully!", link: calendarResponse }),
+        JSON.stringify({ 
+          message: "Event created successfully!", 
+          link: calendarResponse 
+        }),
         { status: 200 }
       );
     } catch (calendarError) {
       console.error("Error adding event to Google Calendar:", calendarError);
-      return new Response(JSON.stringify({ error: "Failed to create event" }), { status: 500 });
+      return new Response(
+        JSON.stringify({ error: "Failed to create calendar event" }), 
+        { status: 500 }
+      );
     }
   } catch (error) {
     console.error("Error processing webhook:", error);
-    return new Response(JSON.stringify({ error: "Internal Server Error" }), { status: 500 });
+    return new Response(
+      JSON.stringify({ error: "Internal Server Error" }), 
+      { status: 500 }
+    );
   }
 }
