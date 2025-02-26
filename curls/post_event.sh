@@ -1,10 +1,14 @@
-curl -X POST http://localhost:3000/api/webhook \
+#!/bin/bash
+
+curl -X POST "http://localhost:3000/api/appointments" \
   -H "Content-Type: application/json" \
   -d '{
-    "name": "John Doe",
-    "address": "123 Main St",
-    "location": "New York, NY",
-    "appointmentDate": "2025-02-14T14:00:00",
-    "email": "johndoe@example.com",
-    "phoneNumber": "+1234567890"
-  }'
+    "name": "Jane Doe",
+    "address": "456 Secondary St",
+    "location": "Los Angeles, CA",
+    "appointmentDate": "2025-03-10T10:30:00",
+    "email": "janedoe@example.com",
+    "phoneNumber": "+1987654321",
+    "propertyType": "residential",
+    "squareFootage": 1500
+}'

@@ -5,6 +5,7 @@ import { addEventToCalendar } from "@/lib/google-calendar";
 export async function POST(request) {
   try {
     const requestData = await request.json();
+    console.log("Webhook received data:", requestData);
 
     // Extract data using new schema
     const { 

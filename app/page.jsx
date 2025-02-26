@@ -164,7 +164,7 @@ const Home = () => {
 
   // Add debug logging for transcript updates
   useEffect(() => {
-    console.log("Transcript updated:", transcript);
+    // console.log("Transcript updated:", transcript);
   }, [transcript]);
 
   // call start handler
