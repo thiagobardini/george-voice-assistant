@@ -2,7 +2,6 @@
 import { ContributorCard } from "@/components/about/ContributorCardProps";
 // import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-with-collision";
 import { GlowingEffect } from "@/components/ui/GlowingEffect";
-import { link } from "fs";
 import Image from "next/image";
 
 export default function AboutPage() {
