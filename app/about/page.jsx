@@ -2,24 +2,24 @@
 import { ContributorCard } from "@/components/about/ContributorCardProps";
 // import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-with-collision";
 import { GlowingEffect } from "@/components/ui/GlowingEffect";
+import { link } from "fs";
 import Image from "next/image";
 
 export default function AboutPage() {
+  // Contributors sorted alphabetically by name:
   const contributors = [
     {
-      name: "Thiago Bardini",
-      role: "Developer",
-      links: {
-        github: "https://github.com/thiagobardini",
-        linkedin: "https://www.linkedin.com/in/thiagobardini/",
-        portfolio: "https://www.tbardini.com/",
-      },
-    },
-    {
-      name: "George",
+      name: "Alejandro",
       role: "Developer",
       links: {
         portfolio: "https://www.sundai.club/",
+      },
+    },
+    {
+      name: "Brenda Silva",
+      role: "Developer",
+      links: {
+        linkedin: "https://www.linkedin.com/in/brendaamsilva/",
       },
     },
     {
@@ -30,31 +30,33 @@ export default function AboutPage() {
       },
     },
     {
-      name: "Alejandro",
+      name: "Enyu Rao",
+      role: "Developer",
+      links: {
+        linkedin: "https://www.linkedin.com/in/enyu-rao/",
+      },
+    },
+    {
+      name: "George",
       role: "Developer",
       links: {
         portfolio: "https://www.sundai.club/",
       },
     },
     {
-      name: "Brenda",
+      name: "Harsh Kumar",
       role: "Developer",
       links: {
-        portfolio: "https://www.sundai.club/",
+        linkedin: "https://www.linkedin.com/in/harsh-kumar-m",
       },
     },
     {
-      name: "Enyu",
+      name: "Thiago Bardini",
       role: "Developer",
       links: {
-        portfolio: "https://www.sundai.club/",
-      },
-    },
-    {
-      name: "Harsh",
-      role: "Developer",
-      links: {
-        portfolio: "https://www.sundai.club/",
+        github: "https://github.com/thiagobardini",
+        linkedin: "https://www.linkedin.com/in/thiagobardini/",
+        portfolio: "https://www.tbardini.com/",
       },
     },
   ];
