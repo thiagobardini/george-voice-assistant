@@ -1,7 +1,7 @@
 // app/about/page.tsx
 import { ContributorCard } from "@/components/about/ContributorCardProps";
-import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-with-collision";
-import { GlowingEffect } from "@/components/ui/glowing-effect";
+// import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-with-collision";
+import { GlowingEffect } from "@/components/ui/GlowingEffect";
 import Image from "next/image";
 
 export default function AboutPage() {
