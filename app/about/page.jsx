@@ -8,10 +8,10 @@ export default function AboutPage() {
   // Contributors sorted alphabetically by name:
   const contributors = [
     {
-      name: "Alejandro",
+      name: "Alejandro Ortiz",
       role: "Developer",
       links: {
-        portfolio: "https://www.sundai.club/",
+        linkedin: "https://www.linkedin.com/in/alejandro-a-ortiz/",
       },
     },
     {
@@ -25,7 +25,7 @@ export default function AboutPage() {
       name: "Connor",
       role: "Developer",
       links: {
-        portfolio: "https://www.sundai.club/",
+        linkedin: "https://www.linkedin.com/in/connordirks/",
       },
     },
     {
@@ -36,10 +36,10 @@ export default function AboutPage() {
       },
     },
     {
-      name: "George",
+      name: "George Cheng",
       role: "Developer",
       links: {
-        portfolio: "https://www.sundai.club/",
+        linkedin: "https://www.linkedin.com/in/cheng-george",
       },
     },
     {

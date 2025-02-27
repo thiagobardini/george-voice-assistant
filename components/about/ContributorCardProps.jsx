@@ -1,5 +1,11 @@
 import Link from "next/link";
-import { FaGithub, FaLinkedin, FaTwitter, FaGlobe, FaInstagram } from "react-icons/fa";
+import {
+  FaGithub,
+  FaLinkedin,
+  FaTwitter,
+  FaGlobe,
+  FaInstagram,
+} from "react-icons/fa";
 import React from "react";
 import Image from "next/image";
 
@@ -10,16 +16,22 @@ export function ContributorCard({ name, role, links }) {
   let avatar = defaultAvatar;
   if (links.linkedin) {
     if (name.toLowerCase() === "harsh kumar") {
-      avatar = "/contributors/harsh-kumar.png"; 
+      avatar = "/contributors/harsh-kumar.png";
     }
     if (name.toLowerCase() === "thiago bardini") {
-      avatar = "/contributors/thiago.jpg"; 
+      avatar = "/contributors/thiago.jpg";
     }
     if (name.toLowerCase() === "brenda silva") {
-      avatar = "/contributors/brenda.png"; 
-    } 
+      avatar = "/contributors/brenda.png";
+    }
     if (name.toLowerCase() === "enyu rao") {
-      avatar = "/contributors/enyu.png"; 
+      avatar = "/contributors/enyu.png";
+    }
+    if (name.toLowerCase() === "george cheng") {
+      avatar = "/contributors/george_cheng.png";
+    }
+    if (name.toLowerCase() === "alejandro ortiz") {
+      avatar = "/contributors/alejandro.png";
     }
     // Add more custom avatars here
   }
@@ -36,11 +48,10 @@ export function ContributorCard({ name, role, links }) {
           className="rounded-full"
         />
       </div>
-      
+
       <div>
         <h3 className="font-bold">{name}</h3>
         <p>{role}</p>
-        
       </div>
       <div className="flex gap-4">
         {links.github && (
