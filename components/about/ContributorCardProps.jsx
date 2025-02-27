@@ -33,6 +33,10 @@ export function ContributorCard({ name, role, links }) {
     if (name.toLowerCase() === "alejandro ortiz") {
       avatar = "/contributors/alejandro.png";
     }
+    if (name.toLowerCase() === "daniel rapoport") {
+      avatar = "/contributors/daniel.png";
+    }
+    
     // Add more custom avatars here
   }
 

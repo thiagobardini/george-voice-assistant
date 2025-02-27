@@ -29,6 +29,13 @@ export default function AboutPage() {
       },
     },
     {
+      name: "Daniel Rapoport",
+      role: "Developer",
+      links: {
+        linkedin: "https://www.linkedin.com/in/daniel-rapoport1/",
+      },
+    },
+    {
       name: "Enyu Rao",
       role: "Developer",
       links: {
