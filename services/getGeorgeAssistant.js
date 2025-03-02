@@ -64,45 +64,74 @@ export const getGeorgeAssistant = async () => {
       },
     },
     server: {
-      url: `${process.env.NEXT_PUBLIC_BASE_URL}/api/webhook`,
+      url: "https://hook.us2.make.com/iannxq8vsuvndymku9cx5pc1tb7lkfm3",
     },
     onComplete: async (conversation) => {
+      console.log("Conversation completed:", conversation);
       try {
         const data = conversation.structuredData;
-
+        // Validate the structured data received from the conversation
         if (!isValidAppointmentData(data)) {
-          throw new Error(
-            "Incomplete or invalid data received from the conversation"
-          );
+          throw new Error("Incomplete or invalid data received from the conversation");
         }
-
+    
         console.log("Structured data:", data);
-        console.log("Sending data to /api/appointments:", data);
-
-        const response = await fetch("/api/appointments", {
+    
+        // Envia os dados para o webhook do Make.com
+        const response = await fetch("https://hook.us2.make.com/hhjqemgejumv8ghj048oi7nr7as16lgg", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(data),
         });
-
+    
         if (!response.ok) {
           const errorDetails = await response.json();
-          throw new Error(
-            `Webhook request failed: ${
-              errorDetails.error || response.statusText
-            }`
-          );
+          throw new Error(`Webhook request failed: ${errorDetails.error || response.statusText}`);
         }
-
+    
         const result = await response.json();
         console.log("Webhook response:", result);
-
         return result;
       } catch (error) {
         console.error("Failed to process conversation:", error.message);
         return null;
       }
     },
+    // onComplete: async (conversation) => {
+    //   try {
+    //     const data = conversation.structuredData;
+    //     // Validate the structured data received from the conversation
+    //     if (!isValidAppointmentData(data)) {
+    //       throw new Error(
+    //         "Incomplete or invalid data received from the conversation"
+    //       );
+    //     }
+
+    //     console.log("Structured data:", data);
+    //     // Example of how to send the data to an API endpoint
+    //     const response = await fetch("/api/appointments", {
+    //       method: "POST",
+    //       headers: { "Content-Type": "application/json" },
+    //       body: JSON.stringify(data),
+    //     });
+
+    //     if (!response.ok) {
+    //       const errorDetails = await response.json();
+    //       throw new Error(
+    //         `Webhook request failed: ${
+    //           errorDetails.error || response.statusText
+    //         }`
+    //       );
+    //     }
+
+    //     const result = await response.json();
+    //     console.log("Webhook response:", result);
+    //     return result;
+    //   } catch (error) {
+    //     console.error("Failed to process conversation:", error.message);
+    //     return null;
+    //   }
+    // },
     model: {
       provider: "openai",
       model: "gpt-4",
@@ -172,6 +201,7 @@ function isValidAppointmentData(data) {
   );
 }
 
+// Functions for data validation
 function isValidEmail(email) {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return emailRegex.test(email);
